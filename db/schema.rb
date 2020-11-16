@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_16_154439) do
+ActiveRecord::Schema.define(version: 2020_11_16_175327) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,4 +28,30 @@ ActiveRecord::Schema.define(version: 2020_11_16_154439) do
     t.index ["reset_password_token"], name: "index_airlines_on_reset_password_token", unique: true
   end
 
+  create_table "bookings", force: :cascade do |t|
+    t.string "status", default: "pending"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.bigint "airline_id", null: false
+    t.bigint "plane_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["airline_id"], name: "index_bookings_on_airline_id"
+    t.index ["plane_id"], name: "index_bookings_on_plane_id"
+  end
+
+  create_table "planes", force: :cascade do |t|
+    t.string "type"
+    t.string "location"
+    t.integer "capacity"
+    t.integer "price_per_day"
+    t.bigint "airline_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["airline_id"], name: "index_planes_on_airline_id"
+  end
+
+  add_foreign_key "bookings", "airlines"
+  add_foreign_key "bookings", "planes"
+  add_foreign_key "planes", "airlines"
 end
