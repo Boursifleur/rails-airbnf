@@ -1,9 +1,16 @@
 <div class="container">
-  <h1> List of planes </h1>
+  <%= link_to "Add a plane", new_plane_path %>
+  <h1> List of my planes </h1>
   <ul>
     <% @planes.each do |plane| %>
     <li>
-      <%= plane.id %> - <%= plane.name %>
+      <%= plane.id %> - <%= link_to plane.name.to_s, plane_path(plane) %>
+      <% if policy(plane).edit? %>
+        <%= link_to "Update", edit_plane_path(plane) %>
+      <% end %>
+      <% if policy(plane).destroy? %>
+        <%= link_to "Delete", plane_path(plane), method: :delete, data: { confirm: "Are you sure?" } %>
+      <% end %>
     </li>
     <% end %>
   </ul>
