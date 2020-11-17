@@ -33,7 +33,7 @@ p "starting Airline seed"
 Plane.create!(
   name: "#{Faker::Superhero.name}",
   location: "#{Faker::Address.city}",
-  capacity: rand(100..1000),
+  capacity: rand(100..500),
   price_per_day: rand(2000..50000),
   airline_id: jeromeairline.id
   )
@@ -44,7 +44,7 @@ end
 Plane.create!(
   name: "#{Faker::Superhero.name}",
   location: "#{Faker::Address.city}",
-  capacity: rand(100..1000),
+  capacity: rand(100..500),
   price_per_day: rand(2000..50000),
   airline_id: thierryairline.id
   )
