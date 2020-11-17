@@ -1,0 +1,10 @@
+<div class="container">
+  <h1> <%= @plane.name %></h1>
+  <ul>
+    <li><%= @plane.id %></li>
+    <li><%= @plane.capacity %></li>
+    <li><%= @plane.location %></li>
+    <li><%= @plane.price_per_day %></li>
+  </ul>
+  <%= link_to "Back to all planes", planes_path %>
+</div>
