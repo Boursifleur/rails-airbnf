@@ -1,1 +1,10 @@
-<h1> Test </h1>
+<div class="container">
+  <h1> List of planes </h1>
+  <ul>
+    <% @planes.each do |plane| %>
+    <li>
+      <%= plane.id %> - <%= plane.type %>
+    </li>
+    <% end %>
+  </ul>
+</div>

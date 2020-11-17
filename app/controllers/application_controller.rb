@@ -23,6 +23,10 @@ class ApplicationController < ActionController::Base
   #   redirect_to(root_path)
   # end
 
+  def pundit_user
+    current_airline
+  end
+
   private
 
   def skip_pundit?
