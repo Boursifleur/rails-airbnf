@@ -4,9 +4,6 @@
     <li>
       <%= link_to "Add a new plane", new_plane_path, class: "tab-underlined active" %>
     </li>
-    <li>
-      <%= link_to "Your bookings", new_plane_path, class: "tab-underlined active" %>
-    </li>
   </ul>
   <div class="cards">
     <% @planes.each do |plane| %>
@@ -16,15 +13,6 @@
             <ul class="list-unstyled">
               <li>
                 <div><%= link_to plane.name.to_s, plane_path(plane) %></div>
-                <div><%= plane.id %></div>
-                <div>
-                  <% if policy(plane).edit? %>
-                    <%= link_to "Update", edit_plane_path(plane) %>
-                  <% end %>
-                  <% if policy(plane).destroy? %>
-                    <%= link_to "Delete", plane_path(plane), method: :delete, data: { confirm: "Are you sure?" } %>
-                  <% end %>
-                </div>
               </li>
             </ul>
         </div>
