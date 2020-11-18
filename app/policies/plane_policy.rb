@@ -7,7 +7,8 @@ class PlanePolicy < ApplicationPolicy
   end
 
   def show?
-    record.airline == user
+    # record.airline == user
+    true
   end
 
   def create?

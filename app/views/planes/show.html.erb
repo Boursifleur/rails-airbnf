@@ -7,6 +7,9 @@
     <li><%= @plane.price_per_day %></li>
   </ul>
   <div>
+  <% if policy(@booking).new? %>
+    <%= link_to "Booking", new_plane_booking_path(@plane) %>
+  <% end %>
   <% if policy(@plane).edit? %>
     <%= link_to "Update", edit_plane_path(@plane) %>
   <% end %>
@@ -15,5 +18,6 @@
   <% end %>
   </div>
   <hr>
-  <%= link_to "Back to all planes", planes_path %>
+  <%= link_to "Back to home page", root_path %> | 
+  <%= link_to "Back to my planes", planes_path %>
 </div>

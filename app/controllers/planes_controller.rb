@@ -6,6 +6,7 @@ class PlanesController < ApplicationController
   end
 
   def show
+    @booking = Booking.new
     @plane = Plane.find(params[:id])
     authorize @plane
     # skip_authorization
