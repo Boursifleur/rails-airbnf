@@ -15,6 +15,7 @@ class BookingsController < ApplicationController
   def new
     @plane = Plane.find(params[:plane_id])
     @booking = Booking.new
+    @booking.plane = @plane
     authorize @booking
   end
 

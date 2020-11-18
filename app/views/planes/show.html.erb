@@ -1,23 +1,33 @@
-<div class="container">
-  <h1> <%= @plane.name %></h1>
-  <ul>
-    <li><%= @plane.id %></li>
-    <li><%= @plane.capacity %></li>
-    <li><%= @plane.location %></li>
-    <li><%= @plane.price_per_day %></li>
-  </ul>
-  <div>
-  <% if policy(@booking).new? %>
-    <%= link_to "Booking", new_plane_booking_path(@plane) %>
-  <% end %>
-  <% if policy(@plane).edit? %>
-    <%= link_to "Update", edit_plane_path(@plane) %>
-  <% end %>
-  <% if policy(@plane).destroy? %>
-    <%= link_to "Delete", plane_path(@plane), method: :delete, data: { confirm: "Are you sure?" } %>
-  <% end %>
+<div class="container d-flex">
+  <div class="card-trip mt-5">
+    <% if @plane.photo.attached? %>
+      <%= cl_image_tag @plane.photo.key, height: 300, width: 400, crop: :fill %>
+    <% else %>
+      <img src="https://aircharterservice-globalcontent-live.cphostaccess.com/images/home_tcm36-2071.jpg" />
+    <% end %>
+    <div class="card-trip-infos">
+      <div>
+        <h1> <%= @plane.name %></h1>
+        <ul class="list-unstyled">
+          <div class="d-flex justify-content-between">
+            <li><i class="fas fa-user-friends"></i>  <%= @plane.capacity %></li>
+            <li><i class="fas fa-map-marked-alt"></i>  <%= @plane.location %></li>
+            <li><i class="fas fa-tags"></i>  <%= @plane.price_per_day %> €</li>
+          </div>
+        </ul>
+        <div>
+          <% if policy(@booking).new? %>
+          <%= link_to "Booking", new_plane_booking_path(@plane), class: "btn btn-gradient" %>
+          <% end %>
+          <% if policy(@plane).edit? %>
+            <%= link_to "Update", edit_plane_path(@plane) %>
+          <% end %>
+          <% if policy(@plane).destroy? %>
+            <%= link_to "Delete", plane_path(@plane), method: :delete, data: { confirm: "Are you sure?" } %>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
   <hr>
-  <%= link_to "Back to home page", root_path %> | 
-  <%= link_to "Back to my planes", planes_path %>
 </div>
