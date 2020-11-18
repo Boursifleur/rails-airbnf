@@ -1,5 +1,9 @@
-<%= simple_form_for [@plane, @booking] do |f| %>
+<div class="container container-form mt-5">
+  <h2><%= @plane.name %></h2>
+  <br>
+  <%= simple_form_for [@plane, @booking] do |f| %>
   <%= f.input :start_date %>
   <%= f.input :end_date %>
   <%= f.submit "Book", class: "btn btn-primary" %>
 <% end %>
+</div>
