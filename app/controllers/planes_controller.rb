@@ -8,6 +8,7 @@ class PlanesController < ApplicationController
   def show
     @booking = Booking.new
     @plane = Plane.find(params[:id])
+    @booking.plane = @plane
     authorize @plane
     # skip_authorization
   end
@@ -54,6 +55,6 @@ class PlanesController < ApplicationController
   private
 
   def plane_params
-    params.require(:plane).permit(:name, :location, :capacity, :price_per_day)
+    params.require(:plane).permit(:name, :location, :capacity, :price_per_day, :photo)
   end
 end

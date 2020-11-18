@@ -8,7 +8,7 @@ class BookingPolicy < ApplicationPolicy
   #   true
   # end
   def new?
-    true
+    record.plane.airline != user
   end
 
   def create?

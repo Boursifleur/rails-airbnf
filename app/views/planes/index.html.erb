@@ -8,7 +8,11 @@
   <div class="cards">
     <% @planes.each do |plane| %>
       <div class="card-product">
-        <img src="https://aircharterservice-globalcontent-live.cphostaccess.com/images/home_tcm36-2071.jpg" />
+        <% if plane.photo.attached? %>
+          <%= cl_image_tag plane.photo.key %>
+        <% else %>
+          <img src="https://aircharterservice-globalcontent-live.cphostaccess.com/images/home_tcm36-2071.jpg" />
+        <% end %>
         <div class="card-product-infos">
             <ul class="list-unstyled">
               <li>
