@@ -15,6 +15,7 @@
             <li><i class="fas fa-tags"></i>  <%= @plane.price_per_day %> €</li>
           </div>
         </ul>
+
         <div>
           <% if policy(@booking).new? %>
           <%= link_to "Booking", new_plane_booking_path(@plane), class: "btn btn-gradient" %>
