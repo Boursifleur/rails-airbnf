@@ -77,7 +77,6 @@
   margin: 0;
 }
 
-
 .card-trip .card-trip-infos {
   padding: 16px;
   display: flex;
@@ -96,6 +95,12 @@
 .card-trip-infos li {
   font-size: 20px;
 } 
+
+.cards a {
+  text-decoration: none;
+  color: black;
+}
+
 
 // Smallest device
 @media (min-width: 100px) and (max-width: 575px) {
