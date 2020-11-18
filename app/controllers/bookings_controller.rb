@@ -1,5 +1,7 @@
 class BookingsController < ApplicationController
   def index
+    skip_policy_scope
+
     @bookings_as_renter = current_airline.bookings
     # all the bookings that the current airline made
 
