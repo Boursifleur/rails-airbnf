@@ -1,22 +1,27 @@
-<h1 class="text-center">Bookings</h1>
-
-<div class= "container-fluid d-flex pt-4">
-  <div class= "container">
+<div class="mt-5 text-center">
+  <h1>Bookings</h1>
+</div>
+<div class= "container-fluid d-flex pt-4 mt-5">
+  <div class= "container text-center">
     <h4> My bookings </h4>
     <% @bookings_as_renter.each do |booking| %>
-      <p> <%= booking.plane.name %></p>
-      <p> <%= booking.plane.airline.name %> </p>
-      <p><%= booking.status %> </p>
-      <p> <%= booking.start_date.strftime("%d/%m/%Y %H:%M")%> to <%=booking.end_date.strftime("%d/%m/%Y %H:%M")%></p>
+      <div class="card-product mt-3">
+        <p> <%= booking.plane.name %> </p>
+        <p> <%= booking.plane.airline.name%> </p>
+        <p> <%= booking.status %> </p>
+        <p> <%= booking.start_date.strftime("%d/%m/%Y")%> to <%=booking.end_date.strftime("%d/%m/%Y")%></p>
+      </div>
     <% end %>
   </div>
-  <div class= "container">
+  <div class= "container text-center">
     <h4> Bookings requests received </h4>
     <% @bookings_as_owner.each do |booking| %>
-      <p> <%= booking.airline.name %> is asking for</p>
-      <p> Your <%= booking.plane.name  %> </p>
-      <p><%= booking.status %> </p>
-      <p> <%= booking.start_date.strftime("%d/%m/%Y %H:%M")%> to <%=booking.end_date.strftime("%d/%m/%Y %H:%M")%></p>
-    <% end  %>
+      <div class="card-product mt-3">
+        <p> <%= booking.airline.name %></p>
+        <p> <%= booking.plane.name  %> </p>
+        <p> <%= booking.status %> </p>
+        <p> <%= booking.start_date.strftime("%d/%m/%Y")%> to <%=booking.end_date.strftime("%d/%m/%Y")%></p>
+        </div>
+      <% end  %>
   </div>
 </div>
