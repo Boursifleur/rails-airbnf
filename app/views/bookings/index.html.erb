@@ -1,27 +1,48 @@
 <div class="mt-5 text-center">
   <h1>Bookings</h1>
 </div>
-<div class= "container-fluid d-flex pt-4 mt-5">
-  <div class= "container text-center">
-    <h4> My bookings </h4>
-    <% @bookings_as_renter.each do |booking| %>
-      <div class="card-product mt-3">
-        <p> <%= booking.plane.name %> </p>
-        <p> <%= booking.plane.airline.name%> </p>
-        <p> <%= booking.status %> </p>
-        <p> <%= booking.start_date.strftime("%d/%m/%Y")%> to <%=booking.end_date.strftime("%d/%m/%Y")%></p>
-      </div>
-    <% end %>
-  </div>
-  <div class= "container text-center">
-    <h4> Bookings requests received </h4>
-    <% @bookings_as_owner.each do |booking| %>
-      <div class="card-product mt-3">
-        <p> <%= booking.airline.name %></p>
-        <p> <%= booking.plane.name  %> </p>
-        <p> <%= booking.status %> </p>
-        <p> <%= booking.start_date.strftime("%d/%m/%Y")%> to <%=booking.end_date.strftime("%d/%m/%Y")%></p>
+<div class= "container">
+  <div class= "row">
+    <div class="col-12 col-md-6">
+      <h4> My bookings </h4>
+      <% @bookings_as_renter.each do |booking| %>
+        <div class="card-product mt-3">
+          <% if booking.plane.photo.attached? %>
+            <%= cl_image_tag plane.photo.key %>
+          <% else %>
+            <img src="https://aircharterservice-globalcontent-live.cphostaccess.com/images/home_tcm36-2071.jpg" />
+          <% end %>
+            <div class="card-product-infos">
+              <ul class="list-unstyled">
+                <li><i class="fas fa-rocket"></i> <%= link_to booking.plane.name.to_s, plane_path(booking.plane), class: 'card-link' %> <em>owned by</em> <strong> <%= booking.airline.name%> </strong></li>
+                <li><i class="fas fa-plane-departure"></i> <strong>Airport:</strong> <%= booking.plane.location %> </li>
+                <li><i class="far fa-calendar-alt"></i> <strong>from:</strong> <%= booking.start_date.strftime("%d/%m/%Y")%> <strong>to:</strong> <%=booking.end_date.strftime("%d/%m/%Y")%></li>
+                <li><i class="far fa-compass"></i> <strong>Status:</strong> <%= booking.status %> </li>
+              </ul>
+            </div>
         </div>
-      <% end  %>
+      <% end %>
+    </div>
+    <div class="col-12 col-md-6">
+      <h4> Bookings requests received </h4>
+      <% @bookings_as_owner.each do |booking| %>
+        <div class="card-product mt-3">
+          <% if booking.plane.photo.attached? %>
+            <%= cl_image_tag plane.photo.key %>
+          <% else %>
+            <img src="https://aircharterservice-globalcontent-live.cphostaccess.com/images/home_tcm36-2071.jpg" />
+          <% end %>
+          <div class="card-product-infos">
+              <ul class="list-unstyled">
+
+                <li><i class="far fa-building"></i> <%= link_to booking.plane.name.to_s, plane_path(booking.plane), class: 'card-link' %><em> for </em><strong><%= booking.airline.name%></strong></li>
+                <li><i class="fas fa-plane-departure"></i> <strong>Airport:</strong> <%= booking.plane.location %> </li>
+                <li><i class="far fa-calendar-alt"></i> <strong>from:</strong> <%= booking.start_date.strftime("%d/%m/%Y")%> <strong>to:</strong> <%=booking.end_date.strftime("%d/%m/%Y")%></li>
+                <li><i class="far fa-compass"></i> <strong>Status:</strong> <%= booking.status %> </li>
+              </ul>
+            </div>
+        </div>
+        <% end %>
+    </div>
   </div>
 </div>
