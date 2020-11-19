@@ -1,8 +1,14 @@
 class PlanesController < ApplicationController
 
   def index
-    # @planes = Plane.all
-    @planes = policy_scope(Plane)
+    @planes = Plane.all
+    # @planes = policy_scope(Plane)
+    @markers = @planes.geocoded.map do |plane|
+      {
+        lat: plane.latitude,
+        lng: plane.longitude
+      }
+    end
   end
 
   def show
