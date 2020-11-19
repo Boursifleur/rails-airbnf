@@ -7,7 +7,7 @@ require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
-require ("data-confirm-modal")
+// require ("data-confirm-modal")
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
@@ -26,6 +26,7 @@ require ("data-confirm-modal")
 // External imports
 import "bootstrap";
 import { initMapbox } from '../plugins/init_mapbox';
+import { changeMarkerOnHover } from '../plugins/init_hover_marker';
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
@@ -34,4 +35,5 @@ document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
   initMapbox();
+  changeMarkerOnHover();
 });

@@ -21,7 +21,7 @@ class PlanesController < ApplicationController
         lat: plane.latitude,
         lng: plane.longitude,
         infoWindow: render_to_string(partial: "info_window", locals: { plane: plane }),
-        # image_url: helpers.asset_url('xxx')
+        image_url: helpers.asset_url('airplane.png'),
         plane_id: plane.id
       }
     end
