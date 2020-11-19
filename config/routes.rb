@@ -6,5 +6,10 @@ Rails.application.routes.draw do
   resources :planes do
     resources :bookings, only: [:new, :create]
   end
-  resources :bookings, only: [:destroy, :index, :edit, :update]
+  resources :bookings, only: [:destroy, :index, :edit, :update] do
+    member do
+      patch :accepted
+      patch :refused
+    end
+  end
 end

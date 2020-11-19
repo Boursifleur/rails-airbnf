@@ -1,6 +1,6 @@
 <div class="container d-flex mt-5">
   <div class="row">
-    <div class="card-trip mt-5 mr-4">
+    <div class="card-trip mt-5">
       <% if @plane.photo.attached? %>
         <%= cl_image_tag @plane.photo.key, height: 300, width: 400, crop: :fill %>
       <% else %>
@@ -17,12 +17,6 @@
             </div>
           </ul>
         <div>
-          <% if policy(@booking).new? %>
-          <%= link_to "Booking", new_plane_booking_path(@plane), class: "btn btn-gradient" %>
-          <% end %>
-          <% if policy(@plane).my_planes? %>
-            <%= link_to "My planes", my_planes_path(@plane) %>
-          <% end %>
           <% if policy(@plane).edit? %>
             <%= link_to "Update", edit_plane_path(@plane) %>
           <% end %>
@@ -41,6 +35,6 @@
         <% end %>
       </div>
     <% end %>
-    <hr>
+    </div>
   </div>
 </div>
