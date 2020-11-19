@@ -101,6 +101,34 @@
   color: black;
 }
 
+.card-home {
+  width:700px;
+  height: 400px;
+  text-align: center;
+/*  border: grey 1px solid;*/
+  border-radius: 4px;
+  box-shadow: 0px 0px 4px lightgrey;
+  padding: 20px 0;
+
+}
+
+.card-home img {
+  width: 400px;
+  height:350px;
+  padding: 20px;
+}
+
+.card-home h3 {
+  font-size: 24px;
+}
+
+.card-home p {
+  font-family: Open sans;
+  font-size: 16px;
+  font-weight: light;
+  padding: 0 10px;
+  color: black;
+}
 
 // Smallest device
 @media (min-width: 100px) and (max-width: 575px) {
