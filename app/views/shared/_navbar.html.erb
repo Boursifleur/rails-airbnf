@@ -18,17 +18,14 @@
           <%= link_to "Messages", "#", class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to "My bookings", bookings_path, class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "My planes", my_planes_path, class: "nav-link" %>
+          <%= link_to "All planes", planes_path, class: "nav-link" %>
         </li>
         <li class="nav-link ml-5"><%= current_airline.email %></li>
         <li class="nav-item dropdown">
           <%= image_tag "https://kitt.lewagon.com/placeholder/users/tylapo", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <%= link_to "Action", "#", class: "dropdown-item" %>
-            <%= link_to "Another action", "#", class: "dropdown-item" %>
+            <%= link_to "My bookings", bookings_path, class: "dropdown-item" %>
+            <%= link_to "My planes", my_planes_path, class: "dropdown-item" %>
             <%= link_to "Log out", destroy_airline_session_path, method: :delete, class: "dropdown-item" %>
           </div>
         </li>
