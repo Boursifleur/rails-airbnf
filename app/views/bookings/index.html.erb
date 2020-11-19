@@ -1,51 +1,102 @@
-<div class="mt-5 text-center">
-  <h1>Bookings</h1>
-</div>
-<div class= "container">
-  <div class= "row">
-    <div class="col-12 col-md-6">
-      <h4> My bookings </h4>
-      <% @bookings_as_renter.each do |booking| %>
-        <div class="card-product mt-3">
-          <% if booking.plane.photo.attached? %>
-            <%= cl_image_tag plane.photo.key %>
-          <% else %>
-            <img src="https://aircharterservice-globalcontent-live.cphostaccess.com/images/home_tcm36-2071.jpg" />
-          <% end %>
-            <div class="card-product-infos">
-              <ul class="list-unstyled">
-                <li><i class="fas fa-rocket"></i> <%= link_to booking.plane.name.to_s, plane_path(booking.plane), class: 'card-link' %> <em>owned by</em> <strong> <%= booking.plane.airline.name%> </strong></li>
-                <li><i class="fas fa-plane-departure"></i> <strong>Airport:</strong> <%= booking.plane.location %> </li>
-                <li><i class="far fa-calendar-alt"></i> <strong>from:</strong> <%= booking.start_date.strftime("%d/%m/%Y")%> <strong>to:</strong> <%=booking.end_date.strftime("%d/%m/%Y")%></li>
-                <li><i class="far fa-compass"></i> <strong>Status:</strong> <%= booking.status %> </li>
-              </ul>
-            </div>
-        </div>
-      <% end %>
-    </div>
-    <div class="col-12 col-md-6">
-      <h4> Bookings requests received </h4>
-      <% @bookings_as_owner.each do |booking| %>
-        <div class="card-product mt-3">
-          <% if booking.plane.photo.attached? %>
-            <%= cl_image_tag plane.photo.key %>
-          <% else %>
-            <img src="https://aircharterservice-globalcontent-live.cphostaccess.com/images/home_tcm36-2071.jpg" />
-          <% end %>
-          <div class="card-product-infos">
-              <ul class="list-unstyled">
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true"> Requests sent </a>
+    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false"> New requests received </a>
+    <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false"> Old requests</a>
+  </div>
+</nav>
 
-                <li><i class="far fa-building"></i> <%= link_to booking.plane.name.to_s, plane_path(booking.plane), class: 'card-link' %><em> for </em><strong><%= booking.airline.name%></strong></li>
-                <li><i class="fas fa-plane-departure"></i> <strong>Airport:</strong> <%= booking.plane.location %> </li>
-                <li><i class="far fa-calendar-alt"></i> <strong>from:</strong> <%= booking.start_date.strftime("%d/%m/%Y")%> <strong>to:</strong> <%=booking.end_date.strftime("%d/%m/%Y")%></li>
-                <li><i class="far fa-compass"></i> <strong>Status:</strong> <%= booking.status %> </li>
-                <li> <%= link_to "Accept", accepted_booking_path(booking), method: :patch, data: { confirm: "Sure to accept ? "} %>
-<%= link_to "Refuse", refused_booking_path(booking), method: :patch, data: { confirm: "Sure to refuse ? "} %></li>
-              </ul>
-            </div>
-        </div>
+
+
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+    <% @bookings_as_renter.each do |booking| %>
+      <div class="card-product mt-3 ">
+        <% if booking.plane.photo.attached? %>
+          <%= cl_image_tag plane.photo.key %>
+        <% else %>
+          <img src="https://aircharterservice-globalcontent-live.cphostaccess.com/images/home_tcm36-2071.jpg" />
         <% end %>
-    </div>
+        <div class="card-product-infos">
+          <ul class="list-unstyled">
+            <li><i class="fas fa-rocket"></i> <%= link_to booking.plane.name.to_s, plane_path(booking.plane), class: 'card-link' %> <em>owned by</em> <strong> <%= booking.plane.airline.name%> </strong></li>
+            <li><i class="fas fa-plane-departure"></i> <strong>Airport:</strong> <%= booking.plane.location %> </li>
+            <li><i class="far fa-calendar-alt"></i> <strong>from:</strong> <%= booking.start_date.strftime("%d/%m/%Y")%> <strong>to:</strong> <%=booking.end_date.strftime("%d/%m/%Y")%></li>
+            <li><i class="far fa-compass"></i> <strong>Status:</strong> <%= booking.status %> </li>
+          </ul>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+
+
+
+
+  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+    <h4> Bookings requests received </h4>
+    <% @bookings_as_owner.reject{|b| b.status != "pending"}.each do |booking| %>
+      <div class="card-product mt-3">
+        <% if booking.plane.photo.attached? %>
+          <%= cl_image_tag plane.photo.key %>
+        <% else %>
+          <img src="https://aircharterservice-globalcontent-live.cphostaccess.com/images/home_tcm36-2071.jpg" />
+        <% end %>
+        <div class="card-product-infos">
+          <ul class="list-unstyled">
+            <li><i class="far fa-building"></i> <%= link_to booking.plane.name.to_s, plane_path(booking.plane), class: 'card-link' %><em> for </em><strong><%= booking.airline.name%></strong></li>
+            <li><i class="fas fa-plane-departure"></i> <strong>Airport:</strong> <%= booking.plane.location %> </li>
+            <li><i class="far fa-calendar-alt"></i> <strong>from:</strong> <%= booking.start_date.strftime("%d/%m/%Y")%> <strong>to:</strong> <%=booking.end_date.strftime("%d/%m/%Y")%></li>
+            <% if booking.status == "pending" %>
+              <li class="pt-2">
+                <%= link_to "Accept", accepted_booking_path(booking),
+                method: :patch, data: { confirm: "Sure to accept ? "},
+                :class => "btn btn-primary" %>
+                <%= link_to "Refuse", refused_booking_path(booking),
+                method: :patch, data: { confirm: "Sure to refuse ? "},
+                :class => "btn btn-danger" %>
+              </li>
+            <% else %>
+              <li><i class="far fa-compass pt-2"></i> <strong>Status:</strong> <%= booking.status %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+
+
+  <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab"> OLD BOOKING
+    <h4> Bookings requests received </h4>
+    <% @bookings_as_owner.select{|b| b.status != "pending"}.each do |booking| %>
+      <div class="card-product mt-3">
+        <% if booking.plane.photo.attached? %>
+          <%= cl_image_tag plane.photo.key %>
+        <% else %>
+          <img src="https://aircharterservice-globalcontent-live.cphostaccess.com/images/home_tcm36-2071.jpg" />
+        <% end %>
+        <div class="card-product-infos">
+          <ul class="list-unstyled">
+            <li><i class="far fa-building"></i> <%= link_to booking.plane.name.to_s, plane_path(booking.plane), class: 'card-link' %><em> for </em><strong><%= booking.airline.name%></strong></li>
+            <li><i class="fas fa-plane-departure"></i> <strong>Airport:</strong> <%= booking.plane.location %> </li>
+            <li><i class="far fa-calendar-alt"></i> <strong>from:</strong> <%= booking.start_date.strftime("%d/%m/%Y")%> <strong>to:</strong> <%=booking.end_date.strftime("%d/%m/%Y")%></li>
+            <% if booking.status == "pending" %>
+              <li class="pt-2">
+                <%= link_to "Accept", accepted_booking_path(booking),
+                method: :patch, data: { confirm: "Sure to accept ? "},
+                :class => "btn btn-primary" %>
+                <%= link_to "Refuse", refused_booking_path(booking),
+                method: :patch, data: { confirm: "Sure to refuse ? "},
+                :class => "btn btn-danger" %>
+              </li>
+            <% else %>
+              <li><i class="far fa-compass pt-2"></i> <strong>Status:</strong> <%= booking.status %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    <% end %>
+
   </div>
 </div>
-

@@ -1,6 +1,6 @@
-<div class="container d-flex mt-5">
-  <div class="row">
-    <div class="card-trip mt-5">
+<div class="container d-flex" style="min-height: calc(100vh - 70px - 120px); align-items: center; padding-bottom:150px;">
+  <div class="row" style="height: 300px;">
+    <div class="card-trip mt-5 mr-4">
       <% if @plane.photo.attached? %>
         <%= cl_image_tag @plane.photo.key, height: 300, width: 400, crop: :fill %>
       <% else %>
@@ -26,8 +26,9 @@
         </div>
       </div>
     </div>
-    <% if policy(@booking).new? %>
-      <div class="form-style">
+  </div>
+  <% if policy(@booking).new? %>
+      <div class="form-style pt-3">
         <%= simple_form_for [@plane, @booking] do |f| %>
         <%= f.input :start_date %>
         <%= f.input :end_date %>
@@ -35,6 +36,4 @@
         <% end %>
       </div>
     <% end %>
-    </div>
-  </div>
 </div>
