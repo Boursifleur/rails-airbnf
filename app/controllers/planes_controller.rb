@@ -52,7 +52,8 @@ class PlanesController < ApplicationController
     redirect_to planes_path
   end
 
-  def myplanes
+  def my_planes
+    skip_authorization
     @planes = policy_scope(Plane)
   end
 

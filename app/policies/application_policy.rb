@@ -34,7 +34,7 @@ class ApplicationPolicy
     false
   end
 
-  def myplanes?
+  def my_planes?
     false
   end
 

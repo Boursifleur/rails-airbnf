@@ -20,6 +20,9 @@
           <% if policy(@booking).new? %>
           <%= link_to "Booking", new_plane_booking_path(@plane), class: "btn btn-gradient" %>
           <% end %>
+          <% if policy(@plane).my_planes? %>
+            <%= link_to "My planes", my_planes_path(@plane) %>
+          <% end %>
           <% if policy(@plane).edit? %>
             <%= link_to "Update", edit_plane_path(@plane) %>
           <% end %>
