@@ -14,4 +14,16 @@ class BookingPolicy < ApplicationPolicy
   def create?
     true
   end
+
+  def update?
+    record.plane.airline == user
+  end
+
+  def booking_accepted
+    update?
+  end
+
+  def booking_refused
+    update?
+  end
 end
