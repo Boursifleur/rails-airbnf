@@ -69,7 +69,8 @@ class PlanesController < ApplicationController
 
   def my_planes
     skip_authorization
-    @planes = policy_scope(Plane)
+    @planes = current_airline.planes
+    # @planes = policy_scope(Plane)
   end
 
   private

@@ -31,7 +31,7 @@ floairline = Airline.create!(
 p "*** Starting planes seed ***"
 
 8.times do
-Plane.create!(
+Plane.create(
   name: "#{Faker::Superhero.name}",
   location: "#{Faker::Address.city}",
   capacity: rand(100..500),
@@ -42,7 +42,7 @@ end
 
 
 8.times do
-Plane.create!(
+Plane.create(
   name: "#{Faker::Superhero.name}",
   location: "#{Faker::Address.city}",
   capacity: rand(100..500),
@@ -52,7 +52,7 @@ Plane.create!(
 end
 
 8.times do
-Plane.create!(
+Plane.create(
   name: "#{Faker::Superhero.name}",
   location: "#{Faker::Address.city}",
   capacity: rand(100..500),
@@ -64,7 +64,7 @@ end
 ## ici les start et end time ont un format DateTime.striptime pour générer le rendu que l'on souhaite
 p "*** Starting bookings seed ***"
 
-Booking.create!(
+Booking.create(
   start_date: DateTime.new(2020,12,1,17,0,0),
   end_date: DateTime.new(2020,12,8,17,0,0),
   airline_id: floairline.id,
@@ -73,7 +73,7 @@ Booking.create!(
   ##ça prend seulement les ID (pluck) et ça random un des avions.
   )
 
-Booking.create!(
+Booking.create(
   start_date: DateTime.new(2020,12,9,17,0,0),
   end_date: DateTime.new(2020,12,12,17,0,0),
   airline_id: floairline.id,
@@ -82,14 +82,14 @@ Booking.create!(
   ##ça prend seulement les ID et ça random un des avions.
   )
 
-Booking.create!(
+Booking.create(
   start_date: DateTime.new(2020,12,20,17,0,0),
   end_date: DateTime.new(2020,12,22,17,0,0),
   airline_id: thierryairline.id,
   plane_id: Plane.where.not(airline:thierryairline).pluck(:id).sample
   )
 
-Booking.create!(
+Booking.create(
   start_date: DateTime.new(2020,12,20,17,0,0),
   end_date: DateTime.new(2020,12,22,17,0,0),
   airline_id: thierryairline.id,
@@ -97,35 +97,35 @@ Booking.create!(
   )
 
 
-Booking.create!(
+Booking.create(
   start_date: DateTime.new(2020,12,20,17,0,0),
   end_date: DateTime.new(2020,12,22,17,0,0),
   airline_id: thierryairline.id,
   plane_id: Plane.where.not(airline:thierryairline).pluck(:id).sample
   )
 
-Booking.create!(
+Booking.create(
   start_date: DateTime.new(2020,12,20,17,0,0),
   end_date: DateTime.new(2020,12,22,17,0,0),
   airline_id: thierryairline.id,
   plane_id: Plane.where.not(airline:thierryairline).pluck(:id).sample
   )
 
-Booking.create!(
+Booking.create(
   start_date: DateTime.new(2020,12,20,17,0,0),
   end_date: DateTime.new(2020,12,22,17,0,0),
   airline_id: jeromeairline.id,
   plane_id: Plane.where.not(airline:jeromeairline.id).pluck(:id).sample
   )
 
-Booking.create!(
+Booking.create(
   start_date: DateTime.new(2020,12,20,17,0,0),
   end_date: DateTime.new(2020,12,22,17,0,0),
   airline_id: jeromeairline.id,
   plane_id: Plane.where.not(airline:jeromeairline.id).pluck(:id).sample
   )
 
-Booking.create!(
+Booking.create(
   start_date: DateTime.new(2020,12,20,17,0,0),
   end_date: DateTime.new(2020,12,22,17,0,0),
   airline_id: jeromeairline.id,
