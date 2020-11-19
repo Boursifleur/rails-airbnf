@@ -1,15 +1,7 @@
 class PlanesController < ApplicationController
   def index
-
     @planes = Plane.all
-    # @planes = policy_scope(Plane)
-    @markers = @planes.geocoded.map do |plane|
-      {
-        lat: plane.latitude,
-        lng: plane.longitude
-      }
-    end
-
+    # @planes = policy_scope(Plane)  
     skip_policy_scope
     if params[:query].present?
       @planes = Plane.where(name: params[:query])
@@ -17,6 +9,15 @@ class PlanesController < ApplicationController
       @planes = Plane.all
     end
     #@planes = policy_scope(Plane)
+
+    @markers = @planes.geocoded.map do |plane|
+      {
+        lat: plane.latitude,
+        lng: plane.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { plane: plane })
+        # image_url: helpers.asset_url('xxx')
+      }
+    end
   end
 
   def show

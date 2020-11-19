@@ -1,10 +1,5 @@
 
 <div class="container">
-  <ul class="list-inline tabs-underlined">
-    <li>
-      <%= link_to "Add a new plane", new_plane_path, class: "tab-underlined active" %>
-    </li>
-  </ul>
   <div class="cards">
     <% @planes.each do |plane| %>
       <div class="card-product">
@@ -24,3 +19,11 @@
     <% end %>
   </div>
 </div>
+
+<div 
+  id="map"
+  style="width: 100%; height: 600px;"
+  data-markers="<%= @markers.to_json %>"
+  data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+</div>
+  
