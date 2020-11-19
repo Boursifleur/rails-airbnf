@@ -2,44 +2,21 @@
   <div class="container">
     <h1> AirBnF <strong> - Share </strong> my <strong> plane </strong> </h1>
     <p>We're helping your plane to feel the sky</p>
+    <div class="form-inline mt-5 justify-content-center">
+      <%= form_tag planes_path, method: :get do %>
+        <%= text_field_tag :query,
+          params[:query],
+          class: "form-control",
+          placeholder: "Plane or location or airline ?"
+        %>
+        <%= submit_tag "Search", class: "btn btn-primary" %>
+      <% end %>
+    </div>
   </div>
 </div>
-
-<%= form_tag planes_path, method: :get do %>
-  <%= text_field_tag :query,
-    params[:query],
-    class: "form-control",
-    placeholder: "Find a plane"
-  %>
-  <%= submit_tag "Search", class: "btn btn-primary" %>
-<% end %>
 
 <div class="container pt-5">
   <ul class="list-inline tabs-underlined">
   </ul>
-  <div class="cards">
-    <% @planes.each do |plane| %>
-      <%= link_to plane_path(plane) do %>
-        <div class="card-product">
-          <div style="height: 100%">
-            <% if plane.photo.attached? %>
-              <%= cl_image_tag plane.photo.key %>
-            <% else %>
-              <img src="https://aircharterservice-globalcontent-live.cphostaccess.com/images/home_tcm36-2071.jpg" />
-            <% end %>
-          </div>
-          <div class="card-product-infos">
-            <ul class="list-unstyled">
-              <li>
-                <div><%= plane.name %></div>
-              </li>
-              <li><i class="fas fa-user-friends"></i>  </i><%= plane.capacity %></li>
-              <li><i class="fas fa-map-marked-alt"></i>  <%= plane.location %></li>
-              <li><i class="fas fa-tags"></i>  <%= plane.price_per_day %> €</li>
-            </ul>
-          </div>
-        </div>
-      <% end %>
-    <% end %>
-  </div>
+
 </div>
