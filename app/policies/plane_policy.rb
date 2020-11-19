@@ -21,7 +21,7 @@ class PlanePolicy < ApplicationPolicy
   end
 
   def my_planes?
-    true
+    record.airline == user
   end
 
   def destroy?

@@ -1,5 +1,7 @@
 class PlanesController < ApplicationController
   def index
+    @planes = Plane.all
+    # @planes = policy_scope(Plane)  
     skip_policy_scope
     if params[:query].present?
       sql_query = " \
@@ -11,6 +13,18 @@ class PlanesController < ApplicationController
     else
       @planes = Plane.all
     end
+
+    #@planes = policy_scope(Plane)
+
+    @markers = @planes.geocoded.map do |plane|
+      {
+        lat: plane.latitude,
+        lng: plane.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { plane: plane })
+        # image_url: helpers.asset_url('xxx')
+      }
+    end
+
   end
 
   def show
@@ -61,7 +75,8 @@ class PlanesController < ApplicationController
 
   def my_planes
     skip_authorization
-    @planes = policy_scope(Plane)
+    @planes = current_airline.planes
+    # @planes = policy_scope(Plane)
   end
 
   private
