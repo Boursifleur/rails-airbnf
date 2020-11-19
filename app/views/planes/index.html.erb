@@ -1,10 +1,5 @@
 
 <div class="container">
-  <ul class="list-inline tabs-underlined">
-    <li>
-      <%= link_to "Add a new plane", new_plane_path, class: "tab-underlined active" %>
-    </li>
-  </ul>
   <div class="cards">
     <% @planes.each do |plane| %>
       <%= link_to plane_path(plane) do %>
