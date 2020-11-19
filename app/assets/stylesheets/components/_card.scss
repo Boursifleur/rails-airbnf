@@ -15,7 +15,7 @@
 
 .card-product {
   overflow: hidden;
-  height: 120px;
+  height: 140px;
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   display: flex;
@@ -48,7 +48,7 @@
 
 .cards {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   grid-gap: 16px;
 }
 
@@ -94,7 +94,7 @@
 
 .card-trip-infos li {
   font-size: 20px;
-} 
+}
 
 .cards a {
   text-decoration: none;
@@ -126,13 +126,13 @@
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) {
   .cards {
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 }
 
 // Extra large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) {
   .cards {
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 }

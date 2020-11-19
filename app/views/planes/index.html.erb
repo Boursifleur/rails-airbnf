@@ -7,20 +7,27 @@
   </ul>
   <div class="cards">
     <% @planes.each do |plane| %>
-      <div class="card-product">
-        <% if plane.photo.attached? %>
-          <%= cl_image_tag plane.photo.key %>
-        <% else %>
-          <img src="https://aircharterservice-globalcontent-live.cphostaccess.com/images/home_tcm36-2071.jpg" />
-        <% end %>
-        <div class="card-product-infos">
+      <%= link_to plane_path(plane) do %>
+        <div class="card-product">
+          <div style="height: 100%">
+            <% if plane.photo.attached? %>
+              <%= cl_image_tag plane.photo.key %>
+            <% else %>
+              <img src="https://aircharterservice-globalcontent-live.cphostaccess.com/images/home_tcm36-2071.jpg" />
+            <% end %>
+          </div>
+          <div class="card-product-infos">
             <ul class="list-unstyled">
               <li>
-                <div><%= link_to plane.name.to_s, plane_path(plane) %></div>
+                <div><%= plane.name %></div>
               </li>
+              <li><i class="fas fa-user-friends"></i>  </i><%= plane.capacity %></li>
+              <li><i class="fas fa-map-marked-alt"></i>  <%= plane.location %></li>
+              <li><i class="fas fa-tags"></i>  <%= plane.price_per_day %> €</li>
             </ul>
+          </div>
         </div>
-      </div>
+      <% end %>
     <% end %>
   </div>
 </div>

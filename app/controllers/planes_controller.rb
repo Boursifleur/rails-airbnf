@@ -2,11 +2,15 @@ class PlanesController < ApplicationController
   def index
     skip_policy_scope
     if params[:query].present?
-      @planes = Plane.where(name: params[:query])
+      sql_query = " \
+        planes.name ILIKE :query \
+        OR planes.location ILIKE :query \
+        OR airlines.name ILIKE :query \
+      "
+      @planes = Plane.joins(:airline).where(sql_query, query: "%#{params[:query]}%")
     else
       @planes = Plane.all
     end
-    #@planes = policy_scope(Plane)
   end
 
   def show
@@ -14,7 +18,6 @@ class PlanesController < ApplicationController
     @plane = Plane.find(params[:id])
     @booking.plane = @plane
     authorize @plane
-    # skip_authorization
   end
 
   def new
