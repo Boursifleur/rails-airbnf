@@ -20,6 +20,10 @@ class PlanePolicy < ApplicationPolicy
     # - user:   the `current_user` signed in with Devise.
   end
 
+  def my_planes?
+    true
+  end
+
   def destroy?
     record.airline == user
   end
