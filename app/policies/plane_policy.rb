@@ -1,8 +1,7 @@
 class PlanePolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      # scope.all
-      scope.where(airline: user)
+      scope.all
     end
   end
 

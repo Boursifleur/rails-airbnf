@@ -27,7 +27,7 @@ class BookingsController < ApplicationController
     @booking.airline = current_airline
 
     if @booking.save
-      redirect_to bookings_path
+      redirect_to bookings_path, notice: "Booking request done"
     else
       render :new
     end
