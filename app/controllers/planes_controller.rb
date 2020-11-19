@@ -1,6 +1,6 @@
 class PlanesController < ApplicationController
-
   def index
+
     @planes = Plane.all
     # @planes = policy_scope(Plane)
     @markers = @planes.geocoded.map do |plane|
@@ -9,6 +9,14 @@ class PlanesController < ApplicationController
         lng: plane.longitude
       }
     end
+
+    skip_policy_scope
+    if params[:query].present?
+      @planes = Plane.where(name: params[:query])
+    else
+      @planes = Plane.all
+    end
+    #@planes = policy_scope(Plane)
   end
 
   def show
@@ -30,11 +38,11 @@ class PlanesController < ApplicationController
     authorize @plane
     if @plane.save
       redirect_to plane_path(@plane)
-    else 
+    else
       render :new
     end
   end
-  
+
   def edit
     @plane = Plane.find(params[:id])
     authorize @plane
@@ -56,6 +64,11 @@ class PlanesController < ApplicationController
     @plane.destroy
     authorize @plane
     redirect_to planes_path
+  end
+
+  def my_planes
+    skip_authorization
+    @planes = policy_scope(Plane)
   end
 
   private

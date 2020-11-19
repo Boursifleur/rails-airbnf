@@ -1,24 +1,27 @@
-<div class="container d-flex">
-  <div class="card-trip mt-5">
-    <% if @plane.photo.attached? %>
-      <%= cl_image_tag @plane.photo.key, height: 300, width: 400, crop: :fill %>
-    <% else %>
-      <img src="https://aircharterservice-globalcontent-live.cphostaccess.com/images/home_tcm36-2071.jpg" />
-    <% end %>
-    <div class="card-trip-infos">
-      <div style="width: 100%">
-        <h1> <%= @plane.name %></h1>
-        <ul class="list-unstyled">
-          <div class="d-flex justify-content-between">
-            <li><i class="fas fa-user-friends"></i>  <%= @plane.capacity %></li>   
-            <li><i class="fas fa-map-marked-alt"></i>  <%= @plane.location %></li>   
-            <li><i class="fas fa-tags"></i>  <%= @plane.price_per_day %> €</li>
-          </div>
-        </ul>
-
+<div class="container d-flex mt-5">
+  <div class="row">
+    <div class="card-trip mt-5 mr-4">
+      <% if @plane.photo.attached? %>
+        <%= cl_image_tag @plane.photo.key, height: 300, width: 400, crop: :fill %>
+      <% else %>
+        <img src="https://aircharterservice-globalcontent-live.cphostaccess.com/images/home_tcm36-2071.jpg" />
+      <% end %>
+      <div class="card-trip-infos">
+        <div style="width: 100%">
+          <h1> <%= @plane.name %></h1>
+          <ul class="list-unstyled">
+            <div class="d-flex justify-content-between">
+              <li><i class="fas fa-user-friends"></i>  <%= @plane.capacity %></li>
+              <li><i class="fas fa-map-marked-alt"></i>  <%= @plane.location %></li>
+              <li><i class="fas fa-tags"></i>  <%= @plane.price_per_day %> €</li>
+            </div>
+          </ul>
         <div>
           <% if policy(@booking).new? %>
           <%= link_to "Booking", new_plane_booking_path(@plane), class: "btn btn-gradient" %>
+          <% end %>
+          <% if policy(@plane).my_planes? %>
+            <%= link_to "My planes", my_planes_path(@plane) %>
           <% end %>
           <% if policy(@plane).edit? %>
             <%= link_to "Update", edit_plane_path(@plane) %>
@@ -29,6 +32,15 @@
         </div>
       </div>
     </div>
+    <% if policy(@booking).new? %>
+      <div class="form-style">
+        <%= simple_form_for [@plane, @booking] do |f| %>
+        <%= f.input :start_date %>
+        <%= f.input :end_date %>
+        <%= f.submit "Book" %>
+        <% end %>
+      </div>
+    <% end %>
+    <hr>
   </div>
-  <hr>
 </div>

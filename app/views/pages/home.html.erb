@@ -4,6 +4,16 @@
     <p>We're helping your plane to feel the sky</p>
   </div>
 </div>
+
+<%= form_tag planes_path, method: :get do %>
+  <%= text_field_tag :query,
+    params[:query],
+    class: "form-control",
+    placeholder: "Find a plane"
+  %>
+  <%= submit_tag "Search", class: "btn btn-primary" %>
+<% end %>
+
 <div class="container pt-5">
   <ul class="list-inline tabs-underlined">
   </ul>
@@ -27,7 +37,7 @@
               <li><i class="fas fa-map-marked-alt"></i>  <%= plane.location %></li>
               <li><i class="fas fa-tags"></i>  <%= plane.price_per_day %> €</li>
             </ul>
-          </div>  
+          </div>
         </div>
       <% end %>
     <% end %>
