@@ -52,6 +52,10 @@ class PlanesController < ApplicationController
     redirect_to planes_path
   end
 
+  def myplanes
+    @planes = policy_scope(Plane)
+  end
+
   private
 
   def plane_params
