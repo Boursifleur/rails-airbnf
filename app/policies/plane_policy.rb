@@ -1,8 +1,7 @@
 class PlanePolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      # scope.all
-      scope.where(airline: user)
+      scope.all
     end
   end
 
@@ -19,6 +18,10 @@ class PlanePolicy < ApplicationPolicy
     record.airline == user
     # - record: the plane passed to the `authorize` method in controller
     # - user:   the `current_user` signed in with Devise.
+  end
+
+  def my_planes?
+    true
   end
 
   def destroy?
