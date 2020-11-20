@@ -76,10 +76,14 @@ api_response["data"].each do |plane|
   new_plane[:plane_age] = plane["plane_age"]
   new_plane[:production_line] = plane["production_line"]
   airline = Airline.where(iata_code: plane["airline_iata_code"])[0]
-  if airline.blank?
-    airline = Airline.first
-  end
+    if airline.blank?
+      airline = Airline.first
+    end
   new_plane.airline = airline
+
+  file = URI.open("https://source.unsplash.com/500x400/?airbus")
+  filename = new_plane.name
+  new_plane.photo.attach(io: file, filename: "#{filename}", content_type: 'image/jpg')
 
   new_plane.save
  end
@@ -90,7 +94,7 @@ p "*** Starting bookings seed ***"
 
 american_airline = Airline.where(email: "american@airline.com")[0]
 50.times do
-  start_year = rand(2010..2021)
+  start_year = rand(2017..2023)
   start_month = rand(1..12)
   start_day = rand (1..15)
   duration = rand(1..10)
