@@ -36,7 +36,7 @@
 <div class="tab-pane <%='show active' if params[:tabactive]%>" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
   <div class="container mt-4">
     <% @bookings_as_owner.reject{|b| b.status != "pending"}.each do |booking| %>
-      <div class="card-product">
+      <div class="card-product mb-2">
         <% if booking.plane.photo.attached? %>
           <%= cl_image_tag plane.photo.key %>
         <% else %>
