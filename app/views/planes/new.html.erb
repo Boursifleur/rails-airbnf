@@ -1,10 +1,21 @@
-<div class="container">
-  <%= simple_form_for @plane do |f| %>
-    <%= f.input :name %>
-    <%= f.input :location %>
-    <%= f.input :capacity %>
-    <%= f.input :price_per_day %>
-    <%= f.input :photo, as: :file %>
-    <%= f.submit %>
-  <% end %>
+<div class="container text-center">
+  <div class="form-style" style="width: 100%">
+    <%= simple_form_for @plane do |f| %>
+      <div class="d-flex justify-content-between">
+        <div style="width: 50%">
+          <%= f.input :name %>
+          <%= f.input :location %>
+          <%= f.input :capacity %>
+          <%= f.input :price_per_day %>
+        </div>
+        <div style="width: 40%">
+          <%= f.submit %>
+          <%# <%= f.input :photo, as: :file %>
+          <%# <%= f.input :photo, input_html: { class: 'd-none'}, label_html: { class: 'upload-photo'}, label: '📷 Upload a photo' %>
+          <%= image_tag "", width: 300, class: "hidden", id: "photo-preview" %>
+          <%= f.input :photo, input_html: { class: 'd-none', id: 'photo-input'}, label_html: { class: 'upload-photo'}, label: '📷 Upload a photo' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>

@@ -21,7 +21,7 @@
             <%= link_to "Update", edit_plane_path(@plane) %>
           <% end %>
           <% if policy(@plane).destroy? %>
-            <%= link_to "Delete", plane_path(@plane), method: :delete, data: { confirm: "Are you sure?" } %>
+            <%= link_to "Delete", my_planes_path(@plane), method: :delete, data: { confirm: "Are you sure?" } %>
           <% end %>
         </div>
       </div>
