@@ -71,7 +71,7 @@ class PlanesController < ApplicationController
     @plane = Plane.find(params[:id])
     @plane.destroy
     authorize @plane
-    redirect_to planes_path
+    redirect_to my_planes_path
   end
 
   def my_planes
