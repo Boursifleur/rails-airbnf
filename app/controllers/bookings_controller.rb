@@ -67,3 +67,4 @@ class BookingsController < ApplicationController
     params.require(:booking).permit(:status, :start_date, :end_date)
   end
 end
+
