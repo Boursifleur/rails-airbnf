@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_19_114649) do
+ActiveRecord::Schema.define(version: 2020_11_20_115003) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,17 @@ ActiveRecord::Schema.define(version: 2020_11_19_114649) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
+    t.string "fleet_average_age"
+    t.string "callsign"
+    t.string "hub_code"
+    t.string "iata_code"
+    t.string "icao_code"
+    t.string "country_iso2"
+    t.string "date_founded"
+    t.string "iata_prefix_accounting"
+    t.string "country_name"
+    t.string "fleet_size"
+    t.string "status"
     t.index ["email"], name: "index_airlines_on_email", unique: true
     t.index ["reset_password_token"], name: "index_airlines_on_reset_password_token", unique: true
   end
@@ -71,6 +82,8 @@ ActiveRecord::Schema.define(version: 2020_11_19_114649) do
     t.datetime "updated_at", precision: 6, null: false
     t.float "latitude"
     t.float "longitude"
+    t.string "plane_age"
+    t.string "production_line"
     t.index ["airline_id"], name: "index_planes_on_airline_id"
   end
 
