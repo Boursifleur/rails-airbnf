@@ -1,4 +1,9 @@
+require 'uri'
+require 'json'
+require 'net/http'
+require 'openssl'
 require 'faker'
+require 'net/http'
 
 p "*** Cleaning all ***"
 
@@ -27,8 +32,46 @@ floairline = Airline.create!(
   password: "password"
   )
 
+# url = URI("https://iata-and-icao-codes.p.rapidapi.com/airlines")
+
+# http = Net::HTTP.new(url.host, url.port)
+# http.use_ssl = true
+# http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+# request = Net::HTTP::Get.new(url)
+# request["x-rapidapi-key"] = '67626310e2msh9ca788f9686d968p19677ajsnfe06d65490f1'
+# request["x-rapidapi-host"] = 'iata-and-icao-codes.p.rapidapi.com'
+
+# airlines = http.request(request)
+# airlines = JSON.parse(airlines.read_body)
+# airlines.each do |airline|
+#   Airline.create(name: airline['name'], email: "#{airline['iata_code']}@airline.com", password: "password")
+# end
 
 p "*** Starting planes seed ***"
+
+
+# params = {
+#   :access_key => AVIATIONSTACK_API_KEY.to_s
+# }
+# uri = URI('https://api.aviationstack.com/v1/airplanes')
+# uri.query = URI.encode_www_form(params)
+# json = Net::HTTP.get(uri)
+# api_response = JSON.parse(json)
+# p api_response['results']
+
+# for flight in api_response['results']
+#     unless flight['live']['is_ground']
+#         puts sprintf("%s flight %s from %s (%s) to %s (%s) is in the air.",
+#             flight['airline']['name'],
+#             flight['flight']['iata'],
+#             flight['departure']['airport'],
+#             flight['departure']['iata'],
+#             flight['arrival']['airport'],
+#             flight['arrival']['iata']
+#         )
+#     end
+# end
 
 8.times do
 Plane.create(
