@@ -1,9 +1,13 @@
-
-<div class="container">
-  <div class="cards">
+<div class="container m-3">
+  <h2>All planes</h2>
+</div> 
+<div class="container d-flex">
+  <ul class="list-inline tabs-underlined">
+  </ul>
+  <div class="cards pr-3">
     <% @planes.each do |plane| %>
       <%= link_to plane_path(plane) do %>
-        <div class="card-product">
+        <div class="card-product" data-plane_id="<%= plane.id %>">
           <div style="height: 100%">
             <% if plane.photo.attached? %>
               <%= cl_image_tag plane.photo.key %>
@@ -14,7 +18,7 @@
           <div class="card-product-infos">
             <ul class="list-unstyled">
               <li>
-                <div><%= plane.name %></div>
+                <div class="font-weight-bold"><%= plane.name %></div>
               </li>
               <li><i class="fas fa-user-friends"></i>  </i><%= plane.capacity %></li>
               <li><i class="fas fa-map-marked-alt"></i>  <%= plane.location %></li>
@@ -32,5 +36,3 @@
     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
   </div>
 </div>
-
-  
