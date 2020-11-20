@@ -1,7 +1,7 @@
 class PlanesController < ApplicationController
   def index
     @planes = Plane.all
-    # @planes = policy_scope(Plane)  
+    # @planes = policy_scope(Plane)
     skip_policy_scope
     if params[:query].present?
       sql_query = " \
@@ -45,7 +45,7 @@ class PlanesController < ApplicationController
     @plane.airline = current_airline
     authorize @plane
     if @plane.save
-      redirect_to plane_path(@plane)
+      redirect_to my_planes_path(@plane)
     else
       render :new
     end
@@ -71,12 +71,12 @@ class PlanesController < ApplicationController
     @plane = Plane.find(params[:id])
     @plane.destroy
     authorize @plane
-    redirect_to planes_path
+    redirect_to my_planes_path
   end
 
   def my_planes
     skip_authorization
-    @planes = current_airline.planes
+    @planes = current_airline.planes.order(:id)
     # @planes = policy_scope(Plane)
   end
 

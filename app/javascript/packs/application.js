@@ -28,6 +28,7 @@ require("channels")
 import "bootstrap";
 import { initMapbox } from '../plugins/init_mapbox';
 import { changeMarkerOnHover } from '../plugins/init_hover_marker';
+import { previewImageOnFileSelect } from '../components/photo_preview';
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
@@ -37,4 +38,5 @@ document.addEventListener('turbolinks:load', () => {
   // initSelect2();
   initMapbox();
   changeMarkerOnHover();
+  previewImageOnFileSelect();
 });
