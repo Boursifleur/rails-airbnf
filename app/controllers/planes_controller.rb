@@ -45,7 +45,7 @@ class PlanesController < ApplicationController
     @plane.airline = current_airline
     authorize @plane
     if @plane.save
-      redirect_to plane_path(@plane)
+      redirect_to my_planes_path(@plane)
     else
       render :new
     end
