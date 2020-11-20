@@ -1,7 +1,7 @@
 class PlanesController < ApplicationController
   def index
     @planes = Plane.all
-    # @planes = policy_scope(Plane)  
+    # @planes = policy_scope(Plane)
     skip_policy_scope
     if params[:query].present?
       sql_query = " \
@@ -76,7 +76,7 @@ class PlanesController < ApplicationController
 
   def my_planes
     skip_authorization
-    @planes = current_airline.planes
+    @planes = current_airline.planes.order(:id)
     # @planes = policy_scope(Plane)
   end
 
