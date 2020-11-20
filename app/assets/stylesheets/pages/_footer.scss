@@ -30,3 +30,8 @@ background: linear-gradient(to top, #FFFFFF, #ECE9E6); /* W3C, IE 10+/ Edge, Fir
 .footer .fa-heart {
   color: #D23333;
 }
+
+
+.tab-content {
+ min-height: calc(100vh - 70px - 120px)
+}

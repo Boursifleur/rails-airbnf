@@ -2,13 +2,22 @@ class BookingsController < ApplicationController
   def index
     skip_policy_scope
 
-    @bookings_as_renter = current_airline.bookings
+    @bookings_as_renter = current_airline.bookings.order(start_date: :asc)
     # all the bookings that the current airline made
 
     @planes = current_airline.planes
     # all the plane of the current airline online
 
     @bookings_as_owner = Booking.where(plane: @planes)
+
+    @current_bookings = @bookings_as_owner.where(status: "accepted").where("DATE(end_date) >= ?", Date.today).order(end_date: :asc)
+
+    @current_bookings_present = @current_bookings.where("DATE(start_date) <= ?", Date.today).order(start_date: :desc)
+
+    @current_bookings_futur = @current_bookings.where("DATE(start_date) > ?", Date.today).order(start_date: :desc)
+
+    @old_bookings = @bookings_as_owner.where.not(status: "pending").where("DATE(end_date) < ?", Date.today).order(end_date: :desc)
+
     # all the bookings request for the current airline planes
   end
 
@@ -50,7 +59,7 @@ class BookingsController < ApplicationController
     authorize @booking
 
     @booking.update(status: "accepted")
-    redirect_to bookings_path
+    redirect_to bookings_path(tabactive: true)
   end
 
   def refused
@@ -58,7 +67,7 @@ class BookingsController < ApplicationController
     authorize @booking
 
     @booking.update(status: "refused")
-    redirect_to bookings_path
+     redirect_to bookings_path(tabactive: true)
   end
 
   private
@@ -67,4 +76,3 @@ class BookingsController < ApplicationController
     params.require(:booking).permit(:status, :start_date, :end_date)
   end
 end
-
