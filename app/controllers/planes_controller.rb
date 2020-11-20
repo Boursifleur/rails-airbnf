@@ -76,7 +76,9 @@ class PlanesController < ApplicationController
 
   def my_planes
     skip_authorization
+    
     @planes = current_airline.planes.order(id: :desc)
+
     # @planes = policy_scope(Plane)
   end
 
